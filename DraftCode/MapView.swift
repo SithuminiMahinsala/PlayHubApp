@@ -2,32 +2,51 @@ import SwiftUI
 import MapKit
 
 struct MapView: View {
-    // In your real lab app, you can pass your saved [GameSession] array here!
-    @State private var position = MapCameraPosition.region(
-        MKCoordinateRegion(
-            center: CLLocationCoordinate2D(latitude: 6.9271, longitude: 79.8612), // Default center (Colombo, Sri Lanka)
-            span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
-        )
-    )
+    @ObservedObject var sessionStore = SessionStore.shared
+    @State private var selectedSession: GameSession?
     
-    // Sample pins for demonstration during your walkthrough
-    let sampleSessions = [
-        GameSession(mode: .tapFrenzy, score: 45, latitude: 6.9271, longitude: 79.8612),
-        GameSession(mode: .lightItUp, score: 22, latitude: 6.9300, longitude: 79.8650),
-        GameSession(mode: .quizRush, score: 18, latitude: 6.9250, longitude: 79.8580)
-    ]
+    // Default map camera centered on user's last known coordinates
+    @State private var cameraPosition: MapCameraPosition = .automatic
     
     var body: some View {
         NavigationStack {
-            Map(position: $position) {
-                ForEach(sampleSessions) { session in
-                    Marker("\(session.mode.rawValue): \(session.score)", coordinate: CLLocationCoordinate2D(latitude: session.latitude, longitude: session.longitude))
-                        .tint(.blue)
+            VStack {
+                if sessionStore.sessions.isEmpty {
+                    VStack(spacing: 15) {
+                        Image(systemName: "map.fill")
+                            .font(.system(size: 60))
+                            .foregroundColor(.secondary)
+                        Text("No Game Sessions Yet")
+                            .font(.title2)
+                            .bold()
+                        Text("Play a round of Tap Frenzy, Light It Up, or Quiz Rush to drop your first location pin!")
+                            .font(.body)
+                            .foregroundColor(.secondary)
+                            .multilineTextAlignment(.center)
+                            .padding(.horizontal)
+                    }
+                } else {
+                    // MAPKIT WITH MARKERS (Week 4 Requirement)
+                    Map(position: $cameraPosition) {
+                        ForEach(sessionStore.sessions) { session in
+                            Marker("\(session.mode.rawValue): \(session.score) pts", 
+                                   systemImage: "gamecontroller.fill", 
+                                   coordinate: CLLocationCoordinate2D(latitude: session.latitude, longitude: session.longitude))
+                            .tint(.red)
+                        }
+                    }
+                    .mapControls {
+                        MapUserLocationButton()
+                        MapCompass()
+                        MapScaleView()
+                    }
                 }
             }
-            .navigationTitle("Game Map")
+            .navigationTitle("Session Map")
             .onAppear {
+                // Request CoreLocation permission when opening the map
                 LocationService.shared.requestPermission()
+                sessionStore.loadSessions()
             }
         }
     }

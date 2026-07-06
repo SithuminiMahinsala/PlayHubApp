@@ -22,26 +22,11 @@ struct MainTabView: View {
                 }
             
             // TAB 3: MAP (Placeholder for lab implementation)
-            NavigationStack {
-                VStack {
-                    Image(systemName: "map.fill")
-                        .font(.system(size: 60))
-                        .foregroundColor(.green)
-                        .padding()
-                    Text("Game Session Map")
-                        .font(.title2)
-                        .bold()
-                    Text("Completed game sessions will be pinned here using CoreLocation.")
-                        .font(.body)
-                        .foregroundColor(.secondary)
-                        .multilineTextAlignment(.center)
-                        .padding()
-                }
-                .navigationTitle("Map")
-            }
+
+           MapView()
             .tabItem {
-                Label("Map", systemImage: "map.fill")
-            }
+             Label("Map", systemImage: "map.fill")
+           }
             
             // TAB 4: SETTINGS
             NavigationStack {

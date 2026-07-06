@@ -5,8 +5,7 @@ class LocationService: NSObject, ObservableObject, CLLocationManagerDelegate {
     static let shared = LocationService()
     private let manager = CLLocationManager()
     
-    @Published var latitude: Double = 0.0
-    @Published var longitude: Double = 0.0
+    @Published var lastLocation: CLLocation?
     
     override private init() {
         super.init()
@@ -14,18 +13,26 @@ class LocationService: NSObject, ObservableObject, CLLocationManagerDelegate {
         manager.desiredAccuracy = kCLLocationAccuracyBest
     }
     
+    // Request permission on app launch as required by Week 4 spec
     func requestPermission() {
         manager.requestWhenInUseAuthorization()
         manager.startUpdatingLocation()
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let location = locations.last else { return }
-        self.latitude = location.coordinate.latitude
-        self.longitude = location.coordinate.longitude
+        lastLocation = locations.last
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print("Location error: \(error.localizedDescription)")
+    }
+    
+    // Helper to get current coordinates (defaults to 0.0 if GPS is unavailable in simulator)
+    var currentLatitude: Double {
+        lastLocation?.coordinate.latitude ?? 6.9271 // Default fallback coordinate
+    }
+    
+    var currentLongitude: Double {
+        lastLocation?.coordinate.longitude ?? 79.8612 // Default fallback coordinate
     }
 }

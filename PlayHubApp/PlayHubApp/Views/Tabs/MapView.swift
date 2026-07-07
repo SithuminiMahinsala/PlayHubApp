@@ -9,7 +9,7 @@ import SwiftUI
 import MapKit
 
 struct MapView: View {
-    @ObservedObject var sessionStore = SessionStore.shared
+    @ObservedObject var sessionStore = StatsVM.shared
     @State private var selectedSession: GameSession?
     
     // Default map camera centered on user's last known coordinates

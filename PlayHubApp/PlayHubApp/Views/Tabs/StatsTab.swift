@@ -16,7 +16,7 @@ struct ScoreData: Identifiable {
     let color: Color
 }
 
-struct StatsView: View {
+struct StatsTab: View {
     @AppStorage("tapFrenzyHighScore") private var tapScore = 0
     @AppStorage("lightItUpHighScore") private var lightScore = 0
     @AppStorage("quizRushHighScore") private var quizScore = 0

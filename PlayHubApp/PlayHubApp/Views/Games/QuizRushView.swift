@@ -13,28 +13,13 @@ struct QuizRushView: View {
     var body: some View {
         VStack {
             if viewModel.isGameOver {
-                // GAME OVER SCREEN
-                VStack(spacing: 20) {
-                    Text("Quiz Completed!")
-                        .font(.largeTitle)
-                        .bold()
-                    Text("Final Score: \(viewModel.score)")
-                        .font(.title)
-                    Text("High Score: \(viewModel.highScore)")
-                        .font(.headline)
-                        .foregroundColor(.secondary)
-                    
-                    Button("Play Again") {
-                        viewModel.restart()
-                    }
-                    .font(.title2)
-                    .bold()
-                    .padding()
-                    .frame(maxWidth: 200)
-                    .background(Color.purple)
-                    .foregroundColor(.white)
-                    .cornerRadius(15)
-                }
+                // CALLS THE CENTRAL RESULT VIEW WITH SHARELINK
+                ResultView(
+                    mode: .quizRush,
+                    score: viewModel.score,
+                    highScore: viewModel.highScore,
+                    onPlayAgain: { viewModel.restart() }
+                )
             } else {
                 // SWITCH ON VIEW STATE
                 switch viewModel.state {
@@ -140,5 +125,15 @@ struct QuizRushView: View {
                 await viewModel.loadQuestions()
             }
         }
+        // RECORDS COMPLETED SESSION FOR STATS CHARTS & MAP PINS
+        .onChange(of: viewModel.isGameOver) { gameOver in
+            if gameOver {
+                StatsVM.shared.addSession(mode: .quizRush, score: viewModel.score)
+            }
+        }
     }
+}
+
+#Preview {
+    QuizRushView()
 }

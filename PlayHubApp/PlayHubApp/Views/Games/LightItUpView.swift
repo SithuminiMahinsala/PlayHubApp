@@ -65,26 +65,13 @@ struct LightItUpView: View {
     var body: some View {
         VStack {
             if isGameOver {
-                // GAME OVER SCREEN
-                VStack(spacing: 20) {
-                    Text("Time's Up!")
-                        .font(.largeTitle)
-                        .bold()
-                    Text("Final Score: \(score)")
-                        .font(.title)
-                    Text("High Score: \(highScore)")
-                        .font(.headline)
-                        .foregroundColor(.secondary)
-                    
-                    Button("Play Again", action: resetGame)
-                        .font(.title2)
-                        .bold()
-                        .padding()
-                        .frame(maxWidth: 200)
-                        .background(Color.orange)
-                        .foregroundColor(.white)
-                        .cornerRadius(15)
-                }
+                // CALLS THE CENTRAL RESULT VIEW WITH SHARELINK
+                ResultView(
+                    mode: .lightItUp,
+                    score: score,
+                    highScore: highScore,
+                    onPlayAgain: resetGame
+                )
             } else {
                 // GAME SCREEN
                 VStack {
@@ -200,6 +187,9 @@ struct LightItUpView: View {
     private func endGame() {
         isGameOver = true
         if score > highScore { highScore = score }
+        
+        // RECORDS COMPLETED SESSION FOR STATS CHARTS & MAP PINS
+        StatsVM.shared.addSession(mode: .lightItUp, score: score)
     }
     
     private func resetGame() {
@@ -208,4 +198,8 @@ struct LightItUpView: View {
         isGameOver = false
         setupGrid()
     }
+}
+
+#Preview {
+    LightItUpView()
 }

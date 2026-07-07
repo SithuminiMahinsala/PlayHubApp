@@ -15,7 +15,7 @@ struct HomeView: View {
                     .font(.system(size: 40, weight: .heavy))
                     .padding(.top, 40)
                 
-                Text("Select a Game Mode")
+                Text("Select a Game ")
                     .font(.headline)
                     .foregroundColor(.secondary)
                 
@@ -66,6 +66,27 @@ struct HomeView: View {
                     .cornerRadius(15)
                     .shadow(radius: 5)
                 }
+                NavigationLink(destination: QuizRushView()) {
+                    HStack {
+                        Image(systemName: "questionmark.circle.fill")
+                            .font(.largeTitle)
+                        VStack(alignment: .leading) {
+                            Text("Quiz Rush")
+                                .font(.title2)
+                                .bold()
+                            Text("Live Trivia API")
+                                .font(.caption)
+                        }
+                        Spacer()
+                        Image(systemName: "chevron.right")
+                    }
+                    .padding()
+                    .frame(maxWidth: .infinity)
+                    .background(Color.purple)
+                    .foregroundColor(.white)
+                    .cornerRadius(15)
+                    .shadow(radius: 5)
+                }
                 
                 Spacer()
             }
@@ -73,5 +94,7 @@ struct HomeView: View {
             .navigationTitle("Home")
             .navigationBarHidden(true)
         }
+        
+        
     }
 }

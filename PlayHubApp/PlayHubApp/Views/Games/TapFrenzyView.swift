@@ -1,3 +1,10 @@
+//
+//  TapFrenzyView.swift
+//  PlayHubApp
+//
+//  Created by COBSCCOMP242P-001 on 2026-07-07.
+//
+
 import SwiftUI
 import Combine
 
@@ -19,30 +26,13 @@ struct TapFrenzyView: View {
     var body: some View {
         VStack {
             if isGameOver {
-                // GAME OVER SCREEN
-                VStack(spacing: 20) {
-                    Text("Game Over!")
-                        .font(.largeTitle)
-                        .bold()
-                    
-                    Text("Final Score: \(score)")
-                        .font(.title)
-                    
-                    Text("High Score: \(highScore)")
-                        .font(.headline)
-                        .foregroundColor(.secondary)
-                    
-                    Button(action: resetGame) {
-                        Text("Play Again")
-                            .font(.title2)
-                            .bold()
-                            .padding()
-                            .frame(maxWidth: 200)
-                            .background(Color.blue)
-                            .foregroundColor(.white)
-                            .cornerRadius(15)
-                    }
-                }
+                // CALLS THE CENTRAL RESULT VIEW WITH SHARELINK
+                ResultView(
+                    mode: .tapFrenzy,
+                    score: score,
+                    highScore: highScore,
+                    onPlayAgain: resetGame
+                )
             } else {
                 // GAME SCREEN
                 VStack {
@@ -115,6 +105,9 @@ struct TapFrenzyView: View {
         if score > highScore {
             highScore = score
         }
+        
+        // RECRODS COMPLETED SESSION FOR STATS CHARTS & MAP PINS
+        StatsVM.shared.addSession(mode: .tapFrenzy, score: score)
     }
     
     private func resetGame() {
@@ -125,4 +118,8 @@ struct TapFrenzyView: View {
         offsetY = 0
         isGameOver = false
     }
+}
+
+#Preview {
+    TapFrenzyView()
 }

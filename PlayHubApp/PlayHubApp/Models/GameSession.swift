@@ -7,12 +7,6 @@
 
 import Foundation
 
-enum GameMode: String, Codable, CaseIterable {
-    case tapFrenzy = "Tap Frenzy"
-    case lightItUp = "Light It Up"
-    case quizRush = "Quiz Rush"
-}
-
 struct GameSession: Identifiable, Codable {
     let id: UUID
     let mode: GameMode

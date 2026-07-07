@@ -8,8 +8,8 @@
 import Foundation
 import Combine
 
-class SessionStore: ObservableObject {
-    static let shared = SessionStore()
+class StatsVM: ObservableObject {
+    static let shared = StatsVM()
     private let storageKey = "savedGameSessions"
     
     @Published var sessions: [GameSession] = []

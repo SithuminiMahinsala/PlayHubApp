@@ -11,7 +11,7 @@ import SwiftUI
 struct PlayHubAppApp: App {
     var body: some Scene {
         WindowGroup {
-            TapFrenzyView()
+            HomeView()
         }
     }
 }

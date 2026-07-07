@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 
 class SessionStore: ObservableObject {
     static let shared = SessionStore()

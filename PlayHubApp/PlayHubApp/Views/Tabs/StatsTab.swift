@@ -8,7 +8,7 @@
 import SwiftUI
 import Charts
 
-// Helper struct for charting data
+// charting data
 struct ScoreData: Identifiable {
     let id = UUID()
     let mode: String
@@ -47,7 +47,7 @@ struct StatsTab: View {
                 .cornerRadius(15)
                 .padding(.horizontal)
                 
-                // SwiftUI Charts Bar Chart
+                //  Bar Chart
                 VStack(alignment: .leading, spacing: 15) {
                     Text("High Scores by Mode")
                         .font(.title3)

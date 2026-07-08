@@ -21,7 +21,7 @@ struct HomeTab: View {
                 
                 Spacer()
                 
-                // GAME 1 BUTTON (Week 1)
+                // Tap Frenzy game button 
                 NavigationLink(destination: TapFrenzyView()) {
                     HStack {
                         Image(systemName: "hand.tap.fill")
@@ -44,7 +44,7 @@ struct HomeTab: View {
                     .shadow(radius: 5)
                 }
                 
-                // GAME 2 BUTTON (Week 2)
+                // Light it up game button
                 NavigationLink(destination: LightItUpView()) {
                     HStack {
                         Image(systemName: "lightbulb.fill")
@@ -66,6 +66,8 @@ struct HomeTab: View {
                     .cornerRadius(15)
                     .shadow(radius: 5)
                 }
+
+                //Quiz rush game button
                 NavigationLink(destination: QuizRushView()) {
                     HStack {
                         Image(systemName: "questionmark.circle.fill")

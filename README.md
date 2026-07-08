@@ -1,6 +1,6 @@
-# PlayHub - iOS Mini-Game Arcade & Portfolio
+# PlayHubApp - iOS Mini Games App
 
-PlayHub is a multi-game iOS application built with SwiftUI, structured around MVVM architecture, and integrated with native iOS platform features including MapKit, Charts, CoreLocation, and UserNotifications.
+PlayHubApp is a multi-game iOS application built with SwiftUI, structured around MVVM architecture, and integrated with native iOS platform features including MapKit, Charts, CoreLocation, and UserNotifications.
 
 ## Architecture Overview
 The project is strictly refactored into a modular folder structure:
@@ -10,10 +10,10 @@ The project is strictly refactored into a modular folder structure:
 * **Services:** Singleton services handling external frameworks (`TriviaAPI`, `LocationService`, `NotificationService`).
 
 ## Features List
-* **Tap Frenzy (Week 1):** Speed tap game featuring a shrinking button challenge and dynamic target jumps.
-* **Light It Up (Week 2):** Whack-a-mole grid mechanic with automatic 4-level round progression and distinct glowing feedback.
-* **Quiz Rush (Week 3):** Live trivia fetched asynchronously via URLSession from Open Trivia DB, featuring streak tracking and robust loading/error states.
-* **Platform Integrations (Week 4):**
+* **Tap Frenzy :** Speed tap game featuring a shrinking button challenge and dynamic target jumps.
+* **Light It Up :** Whack-a-mole grid mechanic with automatic 4-level round progression and distinct glowing feedback.
+* **Quiz Rush :** Live trivia fetched asynchronously via URLSession from Open Trivia DB, featuring streak tracking and robust loading/error states.
+* **Platform Integrations :**
   * **Charts:** Visual bar chart aggregation of high scores across all game modes using the SwiftUI Charts framework.
   * **MapKit & CoreLocation:** Records GPS coordinates on session completion and renders interactive pins on a map.
   * **UserNotifications:** Local daily reminder scheduling configured via a custom DatePicker in Settings.
@@ -25,4 +25,4 @@ The project is strictly refactored into a modular folder structure:
 * CoreLocation requires explicit user permission; if denied, map pins default to standard coordinates.
 
 ## Reflection
-Building PlayHub highlighted the power of SwiftUI's declarative syntax and the critical importance of separating UI from logic using ObservableObject ViewModels. Integrating native frameworks like Charts and MapKit inside a clean TabView shell transformed three isolated coursework exercises into a cohesive, production-ready portfolio application.
+Building PlayHub highlighted the power of SwiftUI's declarative syntax and the critical importance of separating UI from logic using ObservableObject ViewModels. Integrating native frameworks like Charts and MapKit inside a clean TabView shell transformed three isolated  exercises into a cohesive, production-ready  application.

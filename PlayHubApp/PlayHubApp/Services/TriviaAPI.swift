@@ -13,7 +13,7 @@ class TriviaAPI {
     
     private init() {}
     
-    // Async function to fetch 10 live trivia questions
+    // fetch 10 live trivia questions
     func fetchQuestions() async throws -> [TriviaQuestion] {
         guard let url = URL(string: urlString) else {
             throw URLError(.badURL)

@@ -18,7 +18,7 @@ class StatsVM: ObservableObject {
         loadSessions()
     }
     
-    // Save a new game session with current GPS coordinates
+    // Save new game session with current GPS coordinates
     func addSession(mode: GameMode, score: Int) {
         let lat = LocationService.shared.currentLatitude
         let lon = LocationService.shared.currentLongitude

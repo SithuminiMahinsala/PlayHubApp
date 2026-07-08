@@ -13,7 +13,7 @@ struct QuizRushView: View {
     var body: some View {
         VStack {
             if viewModel.isGameOver {
-                // CALLS THE CENTRAL RESULT VIEW WITH SHARELINK
+                //SHARELINK
                 ResultView(
                     mode: .quizRush,
                     score: viewModel.score,
@@ -21,7 +21,7 @@ struct QuizRushView: View {
                     onPlayAgain: { viewModel.restart() }
                 )
             } else {
-                // SWITCH ON VIEW STATE
+                // VIEW STATE
                 switch viewModel.state {
                 case .loading:
                     VStack(spacing: 15) {
@@ -125,7 +125,7 @@ struct QuizRushView: View {
                 await viewModel.loadQuestions()
             }
         }
-        // RECORDS COMPLETED SESSION FOR STATS CHARTS & MAP PINS
+        // Record completed session for stats and map 
         .onChange(of: viewModel.isGameOver) { gameOver in
             if gameOver {
                 StatsVM.shared.addSession(mode: .quizRush, score: viewModel.score)

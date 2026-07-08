@@ -21,7 +21,7 @@ class LocationService: NSObject, ObservableObject, CLLocationManagerDelegate {
         manager.desiredAccuracy = kCLLocationAccuracyBest
     }
     
-    // Request permission on app launch as required by Week 4 spec
+    // Request permission on app launch 
     func requestPermission() {
         manager.requestWhenInUseAuthorization()
         manager.startUpdatingLocation()
@@ -35,12 +35,12 @@ class LocationService: NSObject, ObservableObject, CLLocationManagerDelegate {
         print("Location error: \(error.localizedDescription)")
     }
     
-    // Helper to get current coordinates (defaults to 0.0 if GPS is unavailable in simulator)
+    // get current coordinates 
     var currentLatitude: Double {
-        lastLocation?.coordinate.latitude ?? 6.9271 // Default fallback coordinate
+        lastLocation?.coordinate.latitude ?? 6.9271 
     }
     
     var currentLongitude: Double {
-        lastLocation?.coordinate.longitude ?? 79.8612 // Default fallback coordinate
+        lastLocation?.coordinate.longitude ?? 79.8612 
     }
 }

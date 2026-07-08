@@ -13,7 +13,7 @@ struct ResultView: View {
     let highScore: Int
     let onPlayAgain: () -> Void
     
-    // Generates the exact share string required by the Week 4 spec
+
     var shareMessage: String {
         "I just scored \(score) on \(mode.rawValue) — beat that!"
     }
@@ -42,7 +42,7 @@ struct ResultView: View {
                 .bold()
                 .foregroundColor(.secondary)
             
-            // WEEK 4 REQUIRED FEATURE: One-line ShareLink
+            //  ShareLink
             ShareLink(item: shareMessage) {
                 HStack {
                     Image(systemName: "square.and.arrow.up")

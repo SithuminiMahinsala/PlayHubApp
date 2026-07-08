@@ -8,7 +8,7 @@
 import SwiftUI
 import Combine
 
-// Represents the 3 UI states required by the Week 3 spec
+// 3 UI states 
 enum QuizState {
     case loading
     case loaded
@@ -26,13 +26,13 @@ class QuizRushVM: ObservableObject {
     
     @AppStorage("quizRushHighScore") var highScore = 0
     
-    // Current question helper
+    // Current question 
     var currentQuestion: TriviaQuestion? {
         guard currentIndex < questions.count else { return nil }
         return questions[currentIndex]
     }
     
-    // Async function called when the screen loads or when "Retry" is tapped
+    // function called when the screen loads or when Retry is tapped
     func loadQuestions() async {
         state = .loading
         isGameOver = false
@@ -54,17 +54,17 @@ class QuizRushVM: ObservableObject {
         }
     }
     
-    // Handle answer selection
+    // answer selection
     func selectAnswer(_ answer: String) {
         guard let question = currentQuestion else { return }
         
         if answer == question.correctAnswer {
-            // Correct tap: increase score + bonus for streaks
+            // Correct tap: increase score + bonus point
             streak += 1
             let streakBonus = streak >= 3 ? 2 : 0 // Bonus points for 3+ streak
             score += (2 + streakBonus)
         } else {
-            // Wrong tap: small penalty, reset streak
+            // Wrong tap: small penalty and reset streak
             score = max(0, score - 1)
             streak = 0
         }

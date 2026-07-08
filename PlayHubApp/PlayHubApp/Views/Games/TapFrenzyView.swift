@@ -15,7 +15,7 @@ struct TapFrenzyView: View {
     @State private var isGameOver = false
     @State private var timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
     
-    // High Score Persistence
+    // High Score 
     @AppStorage("tapFrenzyHighScore") private var highScore = 0
     
     // Challenge 2: Target (Random position offsets)
@@ -26,7 +26,7 @@ struct TapFrenzyView: View {
     var body: some View {
         VStack {
             if isGameOver {
-                // CALLS THE CENTRAL RESULT VIEW WITH SHARELINK
+                // SHARELINK
                 ResultView(
                     mode: .tapFrenzy,
                     score: score,
@@ -106,7 +106,7 @@ struct TapFrenzyView: View {
             highScore = score
         }
         
-        // RECRODS COMPLETED SESSION FOR STATS CHARTS & MAP PINS
+        // Record completed session for stats and map 
         StatsVM.shared.addSession(mode: .tapFrenzy, score: score)
     }
     

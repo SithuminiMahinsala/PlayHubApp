@@ -33,7 +33,7 @@ struct MapView: View {
                             .padding(.horizontal)
                     }
                 } else {
-                    // MAPKIT WITH MARKERS (Week 4 Requirement)
+                    // MAPKIT with pins 
                     Map(position: $cameraPosition) {
                         ForEach(sessionStore.sessions) { session in
                             Marker("\(session.mode.rawValue): \(session.score) pts",

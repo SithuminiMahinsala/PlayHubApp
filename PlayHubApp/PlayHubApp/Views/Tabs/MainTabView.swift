@@ -10,25 +10,25 @@ import SwiftUI
 struct MainTabView: View {
     var body: some View {
         TabView {
-            // TAB 1: HOME
+            // HOME
             HomeTab()
                 .tabItem {
                     Label("Home", systemImage: "gamecontroller.fill")
                 }
             
-            // TAB 2: STATS
+            // STATS
             StatsTab()
                 .tabItem {
                     Label("Stats", systemImage: "chart.bar.fill")
                 }
             
-            // TAB 3: MAP
+            // MAP
             MapView()
                 .tabItem {
                     Label("Map", systemImage: "map.fill")
                 }
             
-            // TAB 4: SETTINGS
+            // SETTINGS
             SettingsTab()
                 .tabItem {
                     Label("Settings", systemImage: "gearshape.fill")

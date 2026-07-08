@@ -15,14 +15,15 @@ struct LightItUpView: View {
     @State private var isGameOver = false
     @State private var cards: [Card] = []
     
-    // Timers: One for the 60s round, one for the card lighting intervals
+    // Timer for the 60s round,
     @State private var gameTimer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
+    // timer for card lighting intervals
     @State private var litTimer = Timer.publish(every: 1.5, on: .main, in: .common).autoconnect()
     
-    // Persist high score separately with a unique key
+    // high score 
     @AppStorage("lightItUpHighScore") private var highScore = 0
     
-    // Level Progression Enum matching coursework specs
+    // Level Progression 
     enum Level {
         case l1, l2, l3, l4
         
@@ -54,7 +55,7 @@ struct LightItUpView: View {
         }
     }
     
-    // Determine current level based on elapsed time in the 60s round
+    // current level based on elapsed time in the 60s round
     private var currentLevel: Level {
         if timeRemaining > 45 { return .l1 }      // 0-15s elapsed
         else if timeRemaining > 30 { return .l2 } // 15-30s elapsed
@@ -73,7 +74,6 @@ struct LightItUpView: View {
                     onPlayAgain: resetGame
                 )
             } else {
-                // GAME SCREEN
                 VStack {
                     HStack {
                         Text("Score: \(score)")
@@ -148,13 +148,13 @@ struct LightItUpView: View {
             withAnimation {
                 setupGrid()
             }
-            // Update the ticking interval as difficulty increases
+            // Update the ticking interval 
             litTimer = Timer.publish(every: currentLevel.interval, on: .main, in: .common).autoconnect()
         }
     }
     
     private func lightUpRandomCards() {
-        // Dim all cards first
+        // Dim all cards 
         for i in 0..<cards.count { cards[i].isLit = false }
         
         // Pick random cards to light up based on level rules
@@ -179,7 +179,7 @@ struct LightItUpView: View {
                 }
             }
         } else {
-            // Wrong tap penalty
+            // Wrong tap 
             score = max(0, score - 1)
         }
     }
@@ -188,7 +188,7 @@ struct LightItUpView: View {
         isGameOver = true
         if score > highScore { highScore = score }
         
-        // RECORDS COMPLETED SESSION FOR STATS CHARTS & MAP PINS
+        // Record completed session for stats and map 
         StatsVM.shared.addSession(mode: .lightItUp, score: score)
     }
     

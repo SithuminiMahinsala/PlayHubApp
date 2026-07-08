@@ -25,17 +25,17 @@ class NotificationService {
         }
     }
     
-    // Schedule a daily reminder at a specific time
+    // Schedule daily reminder at  specific time
     func scheduleDailyReminder(at time: Date) {
         let center = UNUserNotificationCenter.current()
-        center.removeAllPendingNotificationRequests() // Clear old reminders
+        center.removeAllPendingNotificationRequests()
         
         let content = UNMutableNotificationContent()
-        content.title = "🎮 Daily Challenge Ready!"
+        content.title = "Daily Challenge Ready!"
         content.body = "Jump back into PlayHub and beat your high score in Quiz Rush or Tap Frenzy!"
         content.sound = .default
         
-        // Extract hour and minute from the selected Date
+        // Extract hour and minute from selected Date
         let calendar = Calendar.current
         let components = calendar.dateComponents([.hour, .minute], from: time)
         

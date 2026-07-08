@@ -63,7 +63,7 @@ struct QuizRushView: View {
                                     .font(.headline)
                                 Spacer()
                                 if viewModel.streak > 1 {
-                                    Text("🔥 \(viewModel.streak) Streak!")
+                                    Text("Great \(viewModel.streak) Streak!")
                                         .font(.subheadline)
                                         .bold()
                                         .foregroundColor(.orange)
